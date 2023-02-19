@@ -3,17 +3,15 @@
   top: 50%;
   left: 50%;
   width: 430px;
-  height: 330px;
   transform: translate(-50%, -50%);
-  border: solid #000 1px;
   background-color: #fff;
   z-index: 2;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (max-width: 767px) {
   .popup__container {
     width: 282px;
-    height: 322px;
   }
 }

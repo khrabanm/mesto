@@ -11,5 +11,6 @@
   .profile__info {
     margin-bottom: 14px;
     height: 26px;
+    gap: 10px;
   }
 }

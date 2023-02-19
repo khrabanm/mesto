@@ -6,9 +6,16 @@ let editButton = profileInfo.querySelector('.profile__edit-button');
 let popup = page.querySelector('.popup');
 let popupContainer = popup.querySelector('.popup__container');
 let closeButton = popupContainer.querySelector('.popup__close-icon');
+let formElement = popupContainer.querySelector('.popup__form');
+let nameInput = formElement.querySelector('.popup__input_type_name');
+let jobInput = formElement.querySelector('.popup__input_type_description');
+let profileName = profileInfo.querySelector('.profile__name');
+let profileDescription = profile.querySelector('.profile__description');
 
 function openPopup () {
   popup.classList.add('popup_opened');
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
 }
 
 editButton.addEventListener('click', openPopup);
@@ -19,19 +26,14 @@ function closePopup () {
 
 closeButton.addEventListener('click', closePopup);
 
-
-let formElement = popupContainer.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__name');
-let jobInput = formElement.querySelector('.popup__description');
-
 function handleFormSubmit (evt) {
   evt.preventDefault(); 
 
   nameInput.getAttribute('value');
   jobInput.getAttribute('value');
 
-  let profileName = profileInfo.querySelector('.profile__name');
-  let profileDescription = profile.querySelector('.profile__description');
+  profileName;
+  profileDescription;
 
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;

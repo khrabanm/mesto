@@ -15,5 +15,6 @@
     grid-template-rows: 73fr 45fr 25fr;
     justify-items: center;
     align-items: start;
+    margin-bottom: 36px;
   }
 }
