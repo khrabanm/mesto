@@ -142,7 +142,7 @@ const renderCard = (data, cardsContainer) => {
   cardsContainer.prepend(cardElement);
 };
 
-let formElementPhoto = popupContainerPhoto.querySelector('.popup-form_photo');
+let formElementPhoto = popupContainerPhoto.querySelector('.popup__form_photo');
 let cardNameInput = formElementPhoto.querySelector('.popup__input_type_place');
 let cardLinkInput = formElementPhoto.querySelector('.popup__input_type_url');
 
