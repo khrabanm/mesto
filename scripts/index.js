@@ -20,6 +20,9 @@ const closeButtonImage = popupContainerImage.querySelector('.popup__close-icon_i
 const popupImageOpen = popupContainerImage.querySelector('.popup__image');
 const popupHeading = popupContainerImage.querySelector('.popup__heading');
 const closeButtons = document.querySelectorAll('.popup__close-icon');
+const elements = content.querySelector('.elements');
+const cards = elements.querySelector('.card');
+
 
 
 function openPopup (popupElement) {
@@ -88,9 +91,6 @@ const initialCards = [
   }
 ];
 
-let elements = content.querySelector('.elements');
-let cards = elements.querySelector('.card');
-
 
 const createCard = (data) => {
   // Клонируем шаблон, наполняем его информацией из объекта data, навешиваем всякие обработчики событий, о которых будет инфа ниже
@@ -115,11 +115,9 @@ const createCard = (data) => {
     popupImageOpen.src = evt.target.src;
     popupImageOpen.alt = evt.target.alt;
     popupHeading.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
-    
-    openPopup(popupImage);
-  }); 
 
-  closePopup(popupImage);
+    openPopup(popupImage); 
+  }); 
   // Возвращаем получившуюся карточку
   return newCard;
 };
@@ -131,9 +129,9 @@ const renderCard = (data, cardsContainer) => {
   cardsContainer.prepend(cardElement);
 };
 
-let formElementPhoto = popupContainerPhoto.querySelector('.popup__form_photo');
-let cardNameInput = formElementPhoto.querySelector('.popup__input_type_place');
-let cardLinkInput = formElementPhoto.querySelector('.popup__input_type_url');
+const formElementPhoto = popupContainerPhoto.querySelector('.popup__form_photo');
+const cardNameInput = formElementPhoto.querySelector('.popup__input_type_place');
+const cardLinkInput = formElementPhoto.querySelector('.popup__input_type_url');
 
 formElementPhoto.addEventListener('submit', (evt) => {
   evt.preventDefault();
