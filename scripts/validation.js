@@ -48,6 +48,11 @@ const toggleButtonState = (inputList, buttonElement, config) => {
   } 
 }; 
 
+function toggleButtonOff(buttonElement) {
+  buttonElement.classList.add(setting.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
 //функция слушаетелей
 const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));  
