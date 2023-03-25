@@ -9,6 +9,7 @@ const popupPhoto = page.querySelector('.popup_photo');
 const popupContainer = popupProfile.querySelector('.profile-popup__container');
 const popupContainerPhoto = popupPhoto.querySelector('.popup__container_photo');
 const formElement = popupContainer.querySelector('.popup__form');
+const input = formElement.querySelector('popup__input');
 const nameInput = formElement.querySelector('.popup__input_type_name');
 const jobInput = formElement.querySelector('.popup__input_type_description');
 const profileName = profileInfo.querySelector('.profile__name');
@@ -22,8 +23,16 @@ const popupHeading = popupContainerImage.querySelector('.popup__heading');
 const closeButtons = document.querySelectorAll('.popup__close-icon');
 const elements = content.querySelector('.elements');
 const cards = elements.querySelector('.card');
+const popupPlace = page.querySelector('.popup__input_type_place');
+const popupLink = page.querySelector('.popup__input_type_url');
+const submitButtonProfile = popupProfile.querySelector('.popup__submit-button_profile');
+const submitButtonPhoto = popupPhoto.querySelector('.popup__submit-button_photo')
 
 
+function toggleButtonOff(button) {
+  button.classList.add('popup__submit-button_disabled');
+  button.disabled = true;
+}
 
 function openPopup (popupElement) {
   popupElement.classList.add('popup_opened');
@@ -33,10 +42,14 @@ editButton.addEventListener('click', function () {
   openPopup(popupProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
+  toggleButtonOff(submitButtonProfile);
 }); 
 
 addButton.addEventListener('click', function () {
   openPopup(popupPhoto);
+  popupPlace.value = '';
+  popupLink.value = '';
+  toggleButtonOff(submitButtonPhoto);
 }); 
 
 function closePopup (popupElement) {
@@ -62,7 +75,29 @@ function handleFormSubmit (evt) {
 
 formElement.addEventListener('submit', handleFormSubmit);
 
+function closePopupOverlay (popupElement) {
+  popupElement.addEventListener("mousedown", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popupElement)
+  }
+});
+};
 
+closePopupOverlay(popupProfile);
+closePopupOverlay(popupPhoto);
+closePopupOverlay(popupImage);
+
+function closePopupEsc (popupElement) {
+  document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    closePopup(popupElement)
+  }
+});
+};
+
+closePopupEsc(popupProfile);
+closePopupEsc(popupPhoto);
+closePopupEsc(popupImage);
 
 const initialCards = [
   {
@@ -141,3 +176,4 @@ formElementPhoto.addEventListener('submit', (evt) => {
 });  
 
 initialCards.forEach(card => { renderCard(card, elements); });
+

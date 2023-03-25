@@ -9,6 +9,7 @@
   text-align: center;
   color: #FFFFFF;
   height: 50px;
+  border-radius: 2px;
 }
 
 .popup__submit-button:hover {
@@ -24,3 +25,4 @@
     height: 46px;
   }
 }
+
