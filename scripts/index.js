@@ -1,6 +1,6 @@
 import { Card } from './Cards.js';
-import { FormValidator } from './Validation.js';
-import { validationConfig } from './Validation.js';
+import { FormValidator } from './FormValidator.js';
+import { validationConfig } from './FormValidator.js';
 
 const page = document.querySelector('.page');
 const content = page.querySelector('.content');
@@ -62,9 +62,6 @@ closeButtons.forEach((button) => {
 
 function submitEditProfileForm (evt) {
   evt.preventDefault(); 
-
-  nameInput.getAttribute('value');
-  jobInput.getAttribute('value');
 
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
