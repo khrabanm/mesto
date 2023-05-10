@@ -1,15 +1,15 @@
 class Card {
-  constructor(data, templateSelector, openPopupImage) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
-    this._openPopupImage = openPopupImage;
-    this._templateSelector = templateSelector;
+    this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   };
 
   // добавляем метод _getTemplate
   _getTemplate() {
     const cardElement = document
-      .querySelector(this._templateSelector)
+      .querySelector(this._cardSelector)
       .content
       .querySelector('.element')
       .cloneNode(true);
@@ -48,14 +48,13 @@ class Card {
 
   // метод добавления всех обработчиков в одном месте
   _setEventListeners() {
-    this._elementImage.addEventListener("click", () => {
-      this._openPopupImage(this._name, this._link);
-    });
-
     this._elementLike.addEventListener("click", () => this._like());
     this._elementDelete.addEventListener("click", () => this._delete());
-  };
-}
+    this._elementImage.addEventListener("click", () => {
+      this._handleCardClick(this._name, this._link);
+    });
+   };
+};
 
 export { Card };
 
