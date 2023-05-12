@@ -36,17 +36,23 @@ validationPhotoForm.enableValidation();
 const popupViewImage = new PopupWithImage('.popup_image');
 popupViewImage.setEventListeners();
 
-  const CardList = new Section({
+function createCard(item) {
+  // тут создаете карточку и возвращаете ее
+  const card = new Card(item, '#template', (name, link) => {
+    popupViewImage.open(name, link)
+  });
+  const cardElement = card.generateCard();
+  return cardElement
+}
+
+  const cardList = new Section({
     data: initialCards,
     renderer: (item) => {
-      const card = new Card(item, '#template', (name, link) => {
-        popupViewImage.open(name, link)});
-      const cardElement = card.generateCard();
-      CardList.addItem(cardElement);
+      cardList.addItem(createCard(item)); 
     }
   }, cardListSelector);
 
-  CardList.renderItems();
+  cardList.renderItems();
   
   const userNameContainer = document.querySelector('.profile__name');
   const userInfoContainer = document.querySelector('.profile__description');
@@ -65,9 +71,7 @@ const popupWithFormEdit = new PopupWithForm(
   {
     submitForm: (evt) => {
       evt.preventDefault(); 
-      const newName = nameInput.value;
-      const newDescription = jobInput.value;
-      userInfo.setUserInfo(newName, newDescription);
+      userInfo.setUserInfo(popupWithFormEdit.getInputValues()); 
       popupWithFormEdit.close();
      }
     },
@@ -84,11 +88,9 @@ const popupWithFormAdd = new PopupWithForm(
   {
     submitForm: (evt) => {
       evt.preventDefault(); 
-      const cards = { name: cardNameInput.value, link: cardLinkInput.value };
-      const newCard = new Card(cards, '#template', (name, link) => {
-        popupViewImage.open(name, link)});
-      const newCardElement = newCard.generateCard();
-      CardList.addItem(newCardElement);
+      const [name, link] = popupWithFormAdd.getInputValues();
+      createCard({name, link});
+      cardList.addItem(createCard({name, link})); 
       popupWithFormAdd.close();
       }
     }, '.popup_photo');

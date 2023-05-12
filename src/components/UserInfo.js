@@ -13,7 +13,7 @@
         return userInfo;
       }
     
-      setUserInfo(newName, newDescription) {
+      setUserInfo([newName, newDescription]) {
         this._userName.textContent = newName,
         this._userInfo.textContent = newDescription
       }
