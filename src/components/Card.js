@@ -87,7 +87,7 @@ export default class Card {
 
     this._likeButton.addEventListener('click', () => {
       if (
-        this._likeButton.classList.contains('elements__like-button_disabled')
+        this._likeButton.classList.contains('element__like_active')
       ) {
         this._handleDeleteLike(this._cardId);
       } else {

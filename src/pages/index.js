@@ -2,31 +2,12 @@ import '../pages/index.css';
 import Api from '../components/Api.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { validationConfig, initialCards } from '../utils/constants.js';
+import { validationConfig, addButton, editButton, formEditProfile, formPhoto, formAvatar, nameInput, jobInput, buttonAvatar, cardListSelector, cardSelector } from '../utils/constants.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithSubmit from '../components/PopupWithSubmit';
-
-const page = document.querySelector('.page');
-const content = document.querySelector('.content');
-const profile = document.querySelector('.profile');
-const addButton = document.querySelector('.profile__add-button');
-const profileInfo = document.querySelector('.profile__info');
-const editButton = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.profile-popup');
-const popupPhoto = document.querySelector('.popup_photo');
-const popupContainer = document.querySelector('.profile-popup__container');
-const popupContainerPhoto = document.querySelector('.popup__container_photo');
-const formEditProfile = document.querySelector('.popup__form_profile');
-const formPhoto = document.querySelector('.popup__form_photo');
-const formAvatar = document.querySelector('.popup__form_avatar');
-const nameInput = document.querySelector('.popup__input_type_name');
-const jobInput = document.querySelector('.popup__input_type_description');
-const buttonAvatar = document.querySelector('.profile__avatar-edit-button');
-const cardListSelector = '.elements';
-const cardSelector = '.card-template';
 
 let userId;
 
@@ -83,7 +64,7 @@ const userInfo = new UserInfo({
             console.log(err);
           })
           .finally(() => {
-            popupWithFormAdd.renderLoading(true);
+            popupWithFormAdd.renderLoading(false);
           });
       },
     },
@@ -103,6 +84,7 @@ const userInfo = new UserInfo({
         handleDeleteCard: (cardId) => {
           popupWithConfirm.open();
           popupWithConfirm.submitCallback(() => {
+            popupWithConfirm.renderLoading(true);
             api
               .deleteCard(cardId)
               .then(() => {
@@ -111,6 +93,9 @@ const userInfo = new UserInfo({
               })
               .catch((err) => {
                 console.log(`Error: ${err}`);
+              })
+              .finally(() => {
+                popupWithConfirm.renderLoading(false);
               });
           });
         },

@@ -7,9 +7,9 @@ export default class PopupWithSubmit extends Popup {
         this._submitButton = this._form.querySelector('.popup__submit-button');
       }
     
-      //mothod for Card (function if submit popup confirm
-      submitCallback(elem) {
-        this._handleSubmit = elem;
+ 
+      submitCallback(submitHandler) {
+        this._handleSubmit = submitHandler;
       }
     
       //listener for submit form
@@ -23,9 +23,9 @@ export default class PopupWithSubmit extends Popup {
 
       renderLoading(isLoading) {
         if (isLoading) {
-            this._submitButton.value = 'Сохранение...'
+            this._submitButton.value = 'Удаление...'
         } else {
-            this._submitButton.value = 'Сохранить'
+            this._submitButton.value = 'Да'
         }
       }
 }
